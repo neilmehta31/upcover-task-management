@@ -29,7 +29,7 @@ import {
       
       // Log the exception
       this.logger.error(
-        `Error ${status} ${request.method} ${request.url}`,
+        `HTTPEXCEPTION FILTET Error ${status} ${request.method} ${request.url}`,
         exception instanceof Error ? exception.stack : 'Unknown error',
       );
       

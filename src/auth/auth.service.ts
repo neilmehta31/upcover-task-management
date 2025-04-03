@@ -62,7 +62,7 @@ export class AuthService {
     async validateUser(userId: string): Promise<UserDocument> {
       const user = await this.userModel.findById(userId).exec();
       if (!user) {
-        throw new UnauthorizedException('User not found');
+        throw new UnauthorizedException('Unauthorized');
       }
       return user;
     }

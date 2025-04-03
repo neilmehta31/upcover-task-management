@@ -1,6 +1,7 @@
 import { IsNotEmpty, IsOptional, IsEnum, IsDate, IsMongoId } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { TaskPriority, TaskStatus } from 'src/schema/tasks.schema';
+import { Type } from 'class-transformer';
 
 export class CreateTaskDto {
   @ApiProperty({ example: 'Implement authentication' })
@@ -24,6 +25,7 @@ export class CreateTaskDto {
   @ApiProperty({ example: '2023-12-31' })
   @IsOptional()
   @IsDate()
+  @Type(() => Date)
   dueDate?: Date;
 }
 
@@ -49,6 +51,7 @@ export class UpdateTaskDto {
   @ApiProperty({ example: '2023-12-31' })
   @IsOptional()
   @IsDate()
+  @Type(() => Date)
   dueDate?: Date;
 }
 
