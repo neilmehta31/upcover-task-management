@@ -11,7 +11,9 @@ import { PassportModule } from '@nestjs/passport';
 
 @Module({
   imports: [MongooseModule.forRootAsync({
-    imports: [ConfigModule, PassportModule.register({ defaultStrategy: 'jwt' })],
+    imports: [
+      ConfigModule.forRoot({ isGlobal: true }),
+      PassportModule.register({ defaultStrategy: 'jwt' })],
     useFactory: (configService: ConfigService) => ({
       uri: configService.get<string>('MONGODB_URI') || 'mongodb://127.0.0.1:27017/task-manager'
     }),
