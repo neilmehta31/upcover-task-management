@@ -164,19 +164,22 @@
 			"response": []
 		},
 		{
-			"name": "assign task",
+			"name": "get paginated tasks",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZWViNDczYjcxYTliZTdhNGE5ODIwNCIsImVtYWlsIjoibmVpbEBleGFtcGxlLmNvbSIsImlhdCI6MTc0MzY5NzAxMSwiZXhwIjoxNzQzNzAwNjExfQ.mtcKV_cFfqHoUwDd55brda9rz0QHunosa63-rmPxSAM",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZWViYmEzMDc0N2EyMTFhZjg5M2RjYyIsImVtYWlsIjoiaG9sYUBleGFtcGxlLmNvbSIsImlhdCI6MTc0MzcwMTI1MSwiZXhwIjoxNzQzNzg3NjUxfQ.EjWmAXDPgmrL31qJHQk5sYTHme_rt9keBi04_I_wD5Q",
 							"type": "string"
 						}
 					]
 				},
-				"method": "POST",
+				"method": "GET",
 				"header": [
 					{
 						"key": "Authorization",
@@ -194,15 +197,66 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/tasks/67eeb72941b5aa6694a4a6e7/assign",
+					"raw": "localhost:3000/tasks?status=TODO&priority=MEDIUM&page=1&limit=10",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tasks"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "TODO"
+						},
+						{
+							"key": "priority",
+							"value": "MEDIUM"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete task",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZWViNDczYjcxYTliZTdhNGE5ODIwNCIsImVtYWlsIjoibmVpbEBleGFtcGxlLmNvbSIsImlhdCI6MTc0MzY5NzAxMSwiZXhwIjoxNzQzNzAwNjExfQ.mtcKV_cFfqHoUwDd55brda9rz0QHunosa63-rmPxSAM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZWU5MDY2NWMyOGEyMWJiOGEyZDRiNiIsImVtYWlsIjoiam9obkBleGFtcGxlLmNvbSIsImlhdCI6MTc0MzY5NjE1MywiZXhwIjoxNzQzNjk5NzUzfQ.rLRdXFpk0jhs2p4Z-f7L0nKz0I-JV0VAZN61BN9S2XU",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/tasks/67eeb72941b5aa6694a4a6e7",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
 						"tasks",
-						"67eeb72941b5aa6694a4a6e7",
-						"assign"
+						"67eeb72941b5aa6694a4a6e7"
 					]
 				}
 			},
