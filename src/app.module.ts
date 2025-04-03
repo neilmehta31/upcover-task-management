@@ -8,6 +8,8 @@ import { ThrottlerModule } from '@nestjs/throttler';
 import { CommonModule } from './common/common.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { PassportModule } from '@nestjs/passport';
+import { JwtStrategy } from './auth/jwt.strategy';
+import { AuthService } from './auth/auth.service';
 
 @Module({
   imports: [MongooseModule.forRootAsync({
@@ -25,6 +27,7 @@ import { PassportModule } from '@nestjs/passport';
     }]
   }), CommonModule],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, JwtStrategy],
+  exports: [JwtStrategy, PassportModule, AuthService]
 })
 export class AppModule { }
