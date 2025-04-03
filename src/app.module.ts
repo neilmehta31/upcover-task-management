@@ -7,11 +7,11 @@ import { TaskModule } from './task/task.module';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { CommonModule } from './common/common.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-
+import { PassportModule } from '@nestjs/passport';
 
 @Module({
   imports: [MongooseModule.forRootAsync({
-    imports: [ConfigModule],
+    imports: [ConfigModule, PassportModule.register({ defaultStrategy: 'jwt' })],
     useFactory: (configService: ConfigService) => ({
       uri: configService.get<string>('MONGODB_URI') || 'mongodb://127.0.0.1:27017/task-manager'
     }),
