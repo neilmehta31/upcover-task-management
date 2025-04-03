@@ -71,6 +71,13 @@ http://localhost:3000/api-docs
 - `DELETE /tasks/:id` - Soft delete a task
 - `POST /tasks/:id/assign` - Assign a task to another user
 
+## Testing
+
+### Running unit tests
+```bash
+npm run test
+```
+
 ## Security Features
 
 - JWT-based authentication
