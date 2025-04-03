@@ -32,9 +32,6 @@ A REST API for task management built with NestJS and MongoDB.
    ```
 
 3. Set up environment variables:
-   ```bash
-   cp .env.example .env
-   ```
    Edit the `.env` file with your own values.
 
 ## Running the application
