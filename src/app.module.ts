@@ -7,27 +7,31 @@ import { TaskModule } from './task/task.module';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { CommonModule } from './common/common.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { PassportModule } from '@nestjs/passport';
-import { JwtStrategy } from './auth/jwt.strategy';
-import { AuthService } from './auth/auth.service';
 
 @Module({
-  imports: [MongooseModule.forRootAsync({
-    imports: [
-      ConfigModule.forRoot({ isGlobal: true }),
-      PassportModule.register({ defaultStrategy: 'jwt' })],
-    useFactory: (configService: ConfigService) => ({
-      uri: configService.get<string>('MONGODB_URI') || 'mongodb://127.0.0.1:27017/task-manager'
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
     }),
-    inject: [ConfigService]
-  }), AuthModule, TaskModule, ThrottlerModule.forRoot({
+    MongooseModule.forRootAsync({
+      imports: [
+        ConfigModule,
+      ],
+      useFactory: (configService: ConfigService) => ({
+        uri: configService.get<string>('MONGODB_URI') || 'mongodb://127.0.0.1:27017/task-manager'
+      }),
+      inject: [ConfigService]
+    }),
+    AuthModule,
+    TaskModule,
+    ThrottlerModule.forRoot({
     throttlers: [{
       ttl: 60000,
       limit: 10
-    }]
-  }), CommonModule],
+      }]
+    }), 
+    CommonModule],
   controllers: [AppController],
-  providers: [AppService, JwtStrategy],
-  exports: [JwtStrategy, PassportModule, AuthService]
+  providers: [AppService]
 })
 export class AppModule { }

@@ -1,112 +1,81 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Task Management API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A REST API for task management built with NestJS and MongoDB.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Features
 
-## Description
+- User authentication with JWT
+- Task CRUD operations with soft delete
+- Task assignment functionality
+- Filtering and pagination for tasks
+- API documentation with Swagger
+- Rate limiting and security best practices
+- Unit and integration tests
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Prerequisites
 
-## Project setup
+- Node.js (v14+)
+- MongoDB
+- npm or yarn
 
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone git@github.com:neilmehta31/upcover-task-management.git
+   cd upcover-task-management
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Set up environment variables:
+   ```bash
+   cp .env.example .env
+   ```
+   Edit the `.env` file with your own values.
+
+## Running the application
+
+### Development
 ```bash
-$ npm install
+npm run start:dev
 ```
 
-## Compile and run the project
-
+### Production
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm run build
+npm run start:prod
 ```
 
-## Run tests
+## API Documentation
 
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+After starting the server, you can access the Swagger API documentation at:
+```
+http://localhost:3000/api-docs
 ```
 
-Task Management API (NestJS + MongoDB)
--------------------------------------------------------------
+## API Endpoints
 
-Objective
-----------------
-Develop a task management API that allows users to create, update, and assign tasks.
+### Authentication
+- `POST /auth/signup` - Register a new user
+- `POST /auth/login` - Login and get JWT token
 
-Requirements
---------------------
+### Tasks
+- `GET /tasks` - Get all tasks (paginated and filterable)
+- `GET /tasks/:id` - Get a task by ID
+- `POST /tasks` - Create a new task
+- `PUT /tasks/:id` - Update a task
+- `DELETE /tasks/:id` - Soft delete a task
+- `POST /tasks/:id/assign` - Assign a task to another user
 
-Core Functionalities
------------------------------
--- User Authentication
--- Implement JWT-based authentication (signup/login).
--- Store users in MongoDB / Firestore.
+## Security Features
 
--- Task CRUD Operations
--- POST /tasks → Create a new task.
--- PUT /tasks/:id → Update a task.
--- DELETE /tasks/:id → Soft delete (mark as deleted: true).
-
--- Task Assignment
---- POST /tasks/:id/assign → Assign a task to another user.
---- Only the task creator can assign it.
---- Verify assigned user exists before assigning.
-
--- Filtering & Pagination
---- GET /tasks?page=1&limit=10 → Paginated list.
---- Allow filtering by status and priority.
-
-Advanced Features
----------------------------
-
--- Security Best Practices
---- Implement rate limiting (nestjs/throttler).
---- Prevent NoSQL injection attacks.
-
--- Logging & Error Handling
----- Centralized error handling using HttpExceptionFilter.
-
--- API Documentation
----- Use Swagger to document all endpoints.
-
---- Testing
----- Unit tests for services & controllers.
----- Integration tests using Supertest.
----- Submission Requirements
-
-
-✅ GitHub repository with:
---- README (setup guide, API docs)
---- Postman collection for testing API
---- Unit & integration tests
+- JWT-based authentication
+- Password hashing with bcrypt
+- Rate limiting to prevent brute force attacks
+- Input validation and sanitization
+- NoSQL injection protection
+- Centralized error handling
