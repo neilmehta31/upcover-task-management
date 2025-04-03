@@ -22,7 +22,7 @@ A REST API for task management built with NestJS and MongoDB.
 
 1. Clone the repository:
    ```bash
-   git clone git@github.com:neilmehta31/upcover-task-management.git
+   git clone https://github.com/neilmehta31/upcover-task-management.git
    cd upcover-task-management
    ```
 
@@ -32,9 +32,6 @@ A REST API for task management built with NestJS and MongoDB.
    ```
 
 3. Set up environment variables:
-   ```bash
-   cp .env.example .env
-   ```
    Edit the `.env` file with your own values.
 
 ## Running the application
@@ -42,12 +39,6 @@ A REST API for task management built with NestJS and MongoDB.
 ### Development
 ```bash
 npm run start:dev
-```
-
-### Production
-```bash
-npm run build
-npm run start:prod
 ```
 
 ## API Documentation
